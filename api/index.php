@@ -3,6 +3,7 @@
 require 'Slim/Slim.php';
 
 $app = new Slim();
+$app->contentType("application/json");
 
 $app->get('/wines', 'getWines');
 $app->get('/wines/:id',	'getWine');
