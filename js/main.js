@@ -10,36 +10,41 @@ findAll();
 $('#btnDelete').hide();
 
 // Register listeners
-$('#btnSearch').click(function() {
+$('#btnSearch').click(function(e) {
+	e.preventDefault(); // cancel default behavior
 	search($('#searchKey').val());
-	return false;
+	// return false;
 });
 
 // Trigger search when pressing 'Return' on search key input field
 $('#searchKey').keypress(function(e){
+	e.preventDefault(); // cancel default behavior
 	if(e.which == 13) {
 		search($('#searchKey').val());
-		e.preventDefault();
-		return false;
+		// e.preventDefault();
+		// return false;
     }
 });
 
-$('#btnAdd').click(function() {
+$('#btnAdd').click(function(e) {
+	e.preventDefault(); // cancel default behavior
 	newWine();
-	return false;
+	// return false;
 });
 
-$('#btnSave').click(function() {
+$('#btnSave').click(function(e) {
+	e.preventDefault(); // cancel default behavior
 	if ($('#wineId').val() == '')
 		addWine();
 	else
 		updateWine();
-	return false;
+	// return false;
 });
 
-$('#btnDelete').click(function() {
+$('#btnDelete').click(function(e) {
+	e.preventDefault(); // cancel default behavior
 	deleteWine();
-	return false;
+	// return false;
 });
 
 $('#wineList a').live('click', function() {
