@@ -22,7 +22,8 @@ function getWines() {
 		$db = null;
 		echo '{"wine": ' . json_encode($wines) . '}';
 	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		$data = array(‘error’=> array(‘text’=>$e->getMessage()));
+		echo json_encode($data);
 	}
 }
 
@@ -35,9 +36,11 @@ function getWine($id) {
 		$stmt->execute();
 		$wine = $stmt->fetchObject();  
 		$db = null;
-		echo json_encode($wine); 
+		$data = array('wine' => $wines);
+		echo json_encode($data);
 	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		$data = array(‘error’=> array(‘text’=>$e->getMessage()));
+		echo json_encode($data);
 	}
 }
 
@@ -61,7 +64,8 @@ function addWine() {
 		echo json_encode($wine); 
 	} catch(PDOException $e) {
 		error_log($e->getMessage(), 3, '/var/tmp/php.log');
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		$data = array(‘error’=> array(‘text’=>$e->getMessage()));
+		echo json_encode($data);
 	}
 }
 
@@ -84,7 +88,8 @@ function updateWine($id) {
 		$db = null;
 		echo json_encode($wine); 
 	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		$data = array(‘error’=> array(‘text’=>$e->getMessage()));
+		echo json_encode($data);
 	}
 }
 
@@ -97,7 +102,8 @@ function deleteWine($id) {
 		$stmt->execute();
 		$db = null;
 	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		$data = array(‘error’=> array(‘text’=>$e->getMessage()));
+		echo json_encode($data);
 	}
 }
 
@@ -111,9 +117,11 @@ function findByName($query) {
 		$stmt->execute();
 		$wines = $stmt->fetchAll(PDO::FETCH_OBJ);
 		$db = null;
-		echo '{"wine": ' . json_encode($wines) . '}';
+		$data = array('wine' => $wines);
+		echo json_encode($data);
 	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		$data = array(‘error’=> array(‘text’=>$e->getMessage()));
+		echo json_encode($data);
 	}
 }
 
